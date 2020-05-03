@@ -1,30 +1,15 @@
 import React from 'react';
 import './App.css';
+import Header from "./components/Header";
+import Navbar from "./components/Navbar";
+import Profile from "./components/Profile";
 
 function App() {
     return (
-        <div>
-            <header>
-                <img
-                    src="https://png.pngtree.com/template/20190313/ourlarge/pngtree-minimalist-bird-logo-image_66208.jpg " alt="Logo"/>
-            </header>
-            <nav>
-                <div>
-                    Profile
-                </div>
-                <div>
-                    Messages
-                </div>
-                <div>
-                    News
-                </div>
-                <div>
-                    Music
-                </div>
-            </nav>
-            <div>
-                Main content
-            </div>
+        <div className='app-wrapper'>
+            <Header/>
+            <Navbar/>
+            <Profile/>
         </div>
     );
 }
