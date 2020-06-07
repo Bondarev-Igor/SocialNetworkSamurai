@@ -1,24 +1,24 @@
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
 
-type DialogType = {
+export type DialogType = {
     id: number
     name: string
 }
 
-type PostType = {
+export type PostType = {
     id: number
     message: string
     likesCount: number
 }
 
-type ProfilePageType ={
+export type ProfilePageType ={
     posts: Array<PostType>
 }
 
-type DialogsPageType = {
+export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
 }
