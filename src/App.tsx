@@ -8,21 +8,23 @@ import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {DialogsPageType, ProfilePageType, RootStateType} from "./redux/state";
+import {AddPostType, DialogsPageType, ProfilePageType, RootStateType} from "./redux/state";
 
 type PropsType = {
     state: RootStateType
+    addPost: (postMessage:string) => void
 }
 
 function App(props: PropsType) {
-debugger;
     return (
         <BrowserRouter>
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route path='/profile' render={() => <Profile profilePage = {props.state.profilePage}/>}/>
+                <Route path='/profile' render={() => <Profile
+                                                      profilePage = {props.state.profilePage}
+                                                      addPost={props.addPost}/>}/>
                 <Route path='/dialogs' render={()=> <Dialogs dialogsPage = {props.state.dialogsPage} />}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
