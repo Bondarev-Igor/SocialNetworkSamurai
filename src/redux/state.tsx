@@ -1,6 +1,5 @@
 let rerenderEntireTree = (state: RootStateType) => {
-
-}
+};
 
 export type MessageType = {
     id: number
@@ -44,6 +43,37 @@ export type updateNewPostTextType = {
 
 export type RerenderEntireTreeType = {
     rerenderEntireTree: (state: RootStateType)=> void
+}
+
+let store = {
+    _state: {
+        profilePage: {
+            posts: [
+                {id: 1, message: 'Hi, how are you?', likesCount: 4},
+                {id: 2, message: "It's my first post", likesCount: 9}
+            ],
+            newPostText: "it-kamasutra.com"
+        },
+        dialogsPage:{
+            dialogs: [
+                {id: 1, name: 'Dimych'},
+                {id: 2, name: 'Elena'},
+                {id: 3, name: 'Pavel'},
+                {id: 4, name: 'Victor'},
+                {id: 5, name: 'Valera'}
+            ],
+            messages: [
+                {id: 1, message: 'Ku'},
+                {id: 2, message: 'Hi'},
+                {id: 3, message: 'Yo'},
+                {id: 4, message: 'Waz'},
+                {id: 5, message: 'Zzz'}
+            ]
+        }
+    },
+    rerenderEntireTree (state: RootStateType) {
+    },
+
 }
 
 let state: RootStateType = {
