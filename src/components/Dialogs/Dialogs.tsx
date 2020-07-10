@@ -2,7 +2,8 @@ import React from "react";
 import style from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import {DialogsPageType, sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/state";
+import { sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {DialogsPageType} from "../../redux/state";
 
 
 type  PropsType = {
@@ -40,8 +41,7 @@ const Dialogs = (props: PropsType) => {
         </div>
         <div className={style.addMessage}>
             <div>
-                <textarea
-                    value={ newMessageBody }
+                <textarea value={ newMessageBody }
                     onChange={ onNewMessageChange }
                     placeholder="Enter yor message"></textarea>
             </div>
