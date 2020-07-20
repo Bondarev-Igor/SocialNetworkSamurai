@@ -3,7 +3,7 @@ import style from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 import { sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
-import {DialogsPageType} from "../../redux/state";
+import {DialogsPageType} from "../../redux/store";
 
 
 type  PropsType = {
@@ -19,7 +19,6 @@ const Dialogs = (props: PropsType) => {
     let newMessageBody = props.dialogsPage.newMessageBody;
 
     let onMessageClick = () => {
-        debugger
         props.dispatch(sendMessageCreator());
     }
 
