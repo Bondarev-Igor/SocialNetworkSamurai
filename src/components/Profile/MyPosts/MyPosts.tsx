@@ -6,8 +6,9 @@ import {PostType} from "../../../redux/store";
 
 export type PostsType = {
      posts: Array<PostType>
-     dispatch: (action: any) => void
+     addPost: () => void
      newPostText: string
+     updateNewPostText: (text: string) => void
 }
 
 
@@ -18,18 +19,13 @@ const MyPosts = (props: PostsType) => {
 
      let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-     let AddPost=()=> {
-         // if (newPostElement.current) {
-             // let text = newPostElement.current.value;
-             props.dispatch( addPostActionCreator());
-             // props.updateNewPostText(" ");
-         // }
+     let onAddPost=()=> {
+         props.addPost();
      };
 
      let onPostChange = () => {
          let text = newPostElement.current!.value;
-         let action = updateNewPostTextActionCreator(text)
-         props.dispatch(action);
+         props.updateNewPostText(text);
      };
     return (
         <div className={style.postsBlock}>
@@ -40,13 +36,11 @@ const MyPosts = (props: PostsType) => {
                               ref = { newPostElement }
                               value = {props.newPostText}/>
                 </div>
-                <button onClick={ AddPost }>Add post</button>
+                <button onClick={ onAddPost }>Add post</button>
                 <button>Remove</button>
             </div>
             <div className={style.posts}>
-
                 { postsElements }
-
             </div>
         </div>
     )

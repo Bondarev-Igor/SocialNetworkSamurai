@@ -10,10 +10,11 @@ import {BrowserRouter} from "react-router-dom";
 
 
 export let rerenderEntireTree = (state: RootStateType) => {
-    debugger;
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state}
+            <App
+                 state={state}
+                 store={store}
                  dispatch={store.dispatch.bind(store)}
             />
         </BrowserRouter>,

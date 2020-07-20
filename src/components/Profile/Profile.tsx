@@ -1,27 +1,18 @@
 import React from 'react';
 import style from './Profile.module.css';
-import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ProfilePageType} from "../../redux/store";
-
-
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 export type PostsType = {
-    profilePage: ProfilePageType
-    dispatch: (action: any) => void
+    store: any
 }
-
 
 const Profile = (props: PostsType) => {
 
     return (
         <div className={style.content}>
             <ProfileInfo/>
-            <MyPosts
-                    posts={props.profilePage.posts}
-                    dispatch={props.dispatch}
-                    newPostText={props.profilePage.newPostText}
-            />
+            <MyPostsContainer store={props.store}/>
         </div>
     )
 };
