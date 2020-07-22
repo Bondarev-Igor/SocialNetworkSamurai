@@ -10,23 +10,20 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {RootStateType} from "./redux/store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {Store} from "redux";
 
-type PropsType = {
-    state: RootStateType
-    dispatch: (action: any) => void
-    store: any
-}
+// type PropsType = {store: Store}
 
-function App(props: PropsType) {
+function App() {
        return (
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/profile'
-                       render={() => <Profile store={props.store}/>}/>
+                       render={() => <Profile/>}/>
                 <Route path='/dialogs'
-                       render={() => <DialogsContainer store={props.store}/>}/>
+                       render={() => <DialogsContainer/>}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>
