@@ -10,6 +10,7 @@ let reducers = combineReducers({
 })
 
 let store: Store = createStore(reducers);
+
 //@ts-ignore
 window.store = store;
 

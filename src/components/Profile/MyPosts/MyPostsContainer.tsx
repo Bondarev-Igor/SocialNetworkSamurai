@@ -1,36 +1,30 @@
 import React from 'react';
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
-import {PostType} from "../../../redux/store";
+import {RootStateType} from "../../../redux/store";
 import MyPosts from "./MyPosts";
-import StoreContext from "../../../StoreContext";
-import store from "../../../redux/redux-store";
-
-// export type PostsType = { store: any }
+import {connect} from "react-redux";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 
 
-const MyPostsContainer = () => {
-
-    return (
-        <StoreContext.Consumer>
-            { (store) => {
-                let state = store.getState();
-
-                let addPost = () => {
-                    store.dispatch(addPostActionCreator());
-                };
-
-                let onPostChange = (text: string) => {
-                    let action = updateNewPostTextActionCreator(text);
-                    store.dispatch(action);
-                };
-               return <MyPosts
-                    updateNewPostText={onPostChange}
-                    addPost={addPost}
-                    posts={state.profilePage.posts}
-                    newPostText={state.profilePage.newPostText}/>}
-        }
-        </StoreContext.Consumer>
-    )
+let mapStateToProps = (state: RootStateType) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
+    }
 };
+
+let mapDispatchToProps = (dispatch: any) => {
+    return {
+        updateNewPostText: (text: string) => {
+            let action = updateNewPostTextActionCreator(text)
+            dispatch(action)
+        },
+        addPost: () => {
+            dispatch(addPostActionCreator())
+        }
+    }
+};
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+
 
 export default MyPostsContainer;
