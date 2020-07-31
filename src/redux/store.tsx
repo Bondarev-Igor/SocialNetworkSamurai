@@ -1,6 +1,3 @@
-import profileReducer from "./profile-reducer";
-import dialogsReducer from "./dialogs-reducer";
-import sidebarReducer from "./sidebar-reducer";
 
 export type MessageType = {
     id: number
@@ -23,16 +20,15 @@ export type ProfilePageType ={
     newPostText: string
 }
 
-export type DialogsPageType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-    newMessageBody: string
-}
 
-export type RootStateType = {
+
+/*export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-}
+    usersPage: Array<UserType>
+}*/
+
+
 
 export type AddPostType ={
     addPost: () => void
@@ -42,15 +38,15 @@ export type UpdateNewPostTextType = {
     updateNewPostText: (newText: string) => void
 }
 
-export type CallSubscribeType = {
+/*export type CallSubscribeType = {
     _callSubscriber: (state: RootStateType)=> void
-}
+}*/
 
 export type DispatchType = {
     dispatch :(action: any) => void
 }
 
-export type StoreType = {
+/*export type StoreType = {
     _state: RootStateType,
     getState: () => RootStateType,
     _callSubscriber: CallSubscribeType,
@@ -58,7 +54,7 @@ export type StoreType = {
     updateNewPostText: UpdateNewPostTextType,
     subscribe:(observer: any) => void
     dispatch: (action: any) => void
-}
+}*/
 
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const ADD_POST = "ADD-POST";
@@ -93,23 +89,23 @@ let store = {
         },
         sidebar: { }
     },
-    _callSubscriber (state: RootStateType) {
-        console.log("State changed");
-    },
-    getState () {
-        return this._state;
-    },
-    subscribe (observer: any) {
-        this._callSubscriber = observer;
-    },
+    // // _callSubscriber (state: RootStateType) {
+    // //     console.log("State changed");
+    // },
+    // getState () {
+    //     return this._state;
+    // },
+    // subscribe (observer: any) {
+    //     this._callSubscriber = observer;
+    // },
 
-    dispatch (action: any) {
-
-        this._state.profilePage = profileReducer(this._state.profilePage,action);
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage,action);
-        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
-        this._callSubscriber(this._state);
-    }
+    // dispatch (action: any) {
+    //
+    //     this._state.profilePage = profileReducer(this._state.profilePage,action);
+    //     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage,action);
+    //     this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+    //     this._callSubscriber(this._state);
+    // }
 };
 
 export default store;

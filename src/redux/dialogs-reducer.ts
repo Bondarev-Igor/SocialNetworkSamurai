@@ -1,3 +1,5 @@
+import {DialogType, MessageType} from "./store";
+
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
 const SEND_MESSAGE = "SEND_MESSAGE";
 
@@ -17,6 +19,12 @@ let initialState = {
         {id: 5, message: 'Zzz'}
     ],
     newMessageBody: ""
+}
+
+export type DialogsPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    newMessageBody: string
 }
 
 const dialogsReducer = (state = initialState, action: any) => {
