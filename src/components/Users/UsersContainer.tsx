@@ -2,10 +2,9 @@ import React from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
 import {followAC, setUsersAC, unfollowAC, UserType} from "../../redux/users-reducer";
-import {Dispatch} from "redux";
 import {AppStateType} from "../../redux/redux-store";
 
-// mapStateToProps принимает весь state цельком и возвращает
+// mapStateToProps принимает весь state целиком и возвращает
 // объект только с теми данными, которые нам нужны
 let mapStateToProps = (state: AppStateType) => {
    return {
