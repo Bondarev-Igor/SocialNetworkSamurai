@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./users.module.css"
 import {UserType} from "../../redux/users-reducer";
+import axios from 'axios';
+import userPhoto from '../../assets/images/ava.jpg'
 
 type PropsType ={
     users: Array<UserType>
@@ -9,22 +11,14 @@ type PropsType ={
     setUsers: (users: Array<UserType>) => void
 }
 
+
+
 let Users = (props: PropsType) => {
     if (props.users.length === 0) {
-        props.setUsers( [
-            {id: 1,
-                photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT8wU0QKZqVzoqdsR8QbksdwdkY0Q3AFDEbpg&usqp=CAU',
-                fullName: 'Igor', followed: true, status: 'I am busy', location: {city: 'Minsk', country: 'Belarus' }},
-            {id: 2,
-                photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT8wU0QKZqVzoqdsR8QbksdwdkY0Q3AFDEbpg&usqp=CAU',
-                fullName: 'Egor', followed: false, status: 'I am clever', location: {city: 'Moscow', country: 'Russia' }},
-            {id: 3,
-                photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT8wU0QKZqVzoqdsR8QbksdwdkY0Q3AFDEbpg&usqp=CAU',
-                fullName: 'Elena', followed: false, status: 'I am beautiful', location: {city: 'Kiev', country: 'Ukraine' }},
-            {id: 4,
-                photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT8wU0QKZqVzoqdsR8QbksdwdkY0Q3AFDEbpg&usqp=CAU',
-                fullName: 'Victor', followed: true, status: 'I am wise', location: {city: 'Minsk', country: 'Belarus' }}
-       ] )
+
+        axios.get<any>("https://social-network.samuraijs.com/api/1.0/users").then (response => {
+             props.setUsers (response.data.items)
+        })
     }
 
     return <div>
@@ -32,7 +26,7 @@ let Users = (props: PropsType) => {
             props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photoUrl} className={styles.userPhoto}/>
+                        <img src={u.photos.small != null ? u.photos.small : userPhoto } className={styles.userPhoto}/>
                     </div>
                     <div>
                         {
@@ -48,12 +42,12 @@ let Users = (props: PropsType) => {
                 </span>
                 <span>
                     <span>
-                       <div>{u.fullName}</div>
+                       <div>{u.name}</div>
                        <div>{u.status}</div>
                     </span>
                     <span>
-                       <div>{u.location.country}</div>
-                       <div>{u.location.city}</div>
+                       <div>{"u.location.country"}</div>
+                       <div>{"u.location.city"}</div>
                     </span>
 
                 </span>
