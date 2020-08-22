@@ -1,6 +1,8 @@
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT-PAG';
+const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT';
 
 type PhotosType = {
     small: string
@@ -21,8 +23,19 @@ export type LocationType = {
     country: string
 }
 
+export type setCurrentPageActionType = {
+    type: "SET_CURRENT_PAGE"
+    currentPage: number
+}
+
+type ActionType = setCurrentPageActionType
+
+
 let initialState = {
-    users: [] as Array<UserType>
+    users: [] as Array<UserType>,
+    pageSize: 15,
+    totalUsersCount: 0,
+    currentPage: 1
 };
 
 const usersReducer = (state = initialState, action: any) => {
@@ -61,12 +74,18 @@ const usersReducer = (state = initialState, action: any) => {
             //придут пользователи(users), я возьму старый стейт,
             //пользователей, которые там были и перезатру их
             //теми пользователями, которые пришли
-            return {
-                ...state,
-                users: [...state.users,...action.users]
+            return {...state,
+                users: action.users
             };
+        };
+        case SET_CURRENT_PAGE: {
+            // создаем объект и меняем в нем currentPage на то, что
+            // придет в action
+            return {...state, currentPage: action.currentPage}
+        };
+        case SET_USERS_TOTAL_COUNT : {
+            return {...state, totalUsersCount: action.totalCount}
         }
-
         default :
             return state
     }
@@ -81,5 +100,8 @@ export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId});
 // будет сетать user. users придут к нам с сервера, мы возьмем их
 // и засетаем в стейт
 export const setUsersAC = (users: Array<UserType>) => ({type: SET_USERS, users});
+
+export const setCurrentPageAC = (currentPage: number) => ({type:SET_CURRENT_PAGE, currentPage});
+export const setUsersTotalCountAC = (totalCount: number) => ({type:SET_USERS_TOTAL_COUNT, totalCount});
 
 export default usersReducer;
