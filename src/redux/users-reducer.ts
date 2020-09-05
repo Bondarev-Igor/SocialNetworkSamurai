@@ -33,7 +33,7 @@ type ActionType = setCurrentPageActionType
 
 let initialState = {
     users: [] as Array<UserType>,
-    pageSize: 15,
+    pageSize: 30,
     totalUsersCount: 0,
     currentPage: 1
 };
