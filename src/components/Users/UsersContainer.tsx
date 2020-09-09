@@ -4,13 +4,14 @@ import {
     followAC,
     setCurrentPageAC,
     setUsersAC,
-    setUsersTotalCountAC,
+    setUsersTotalCountAC, toggleIsFetchingAC,
     unfollowAC,
     UserType
 } from "../../redux/users-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import axios from "axios";
 import Users from "./Users";
+import preloader from "../../assets/images/preloader.gif"
 
 type PropsType = {
     users: Array<UserType>
@@ -22,10 +23,10 @@ type PropsType = {
     pageSize: number
     currentPage: number
     setCurrentPage: (pageNumber: number) => void
+    isFetchig: boolean
 }
 
 class UsersContainer extends React.Component <PropsType> {
-
 
     componentDidMount(): void {
         axios.get<any>(
@@ -49,18 +50,20 @@ class UsersContainer extends React.Component <PropsType> {
 
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
-        return <Users
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            currentPage={this.props.currentPage}
-            onPageChanged={this.onPageChanged}
-            users={this.props.users}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
-        />
+        return <>
+            {this.props.isFetchig ? <img src={preloader}/> : null}
+            <Users
+                totalUsersCount={this.props.totalUsersCount}
+                pageSize={this.props.pageSize}
+                currentPage={this.props.currentPage}
+                onPageChanged={this.onPageChanged}
+                users={this.props.users}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
+            />
+        </>
     }
 }
-
 
 
 // mapStateToProps принимает весь state целиком и возвращает
@@ -70,7 +73,8 @@ let mapStateToProps = (state: AppStateType) => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isFetchig: state.usersPage.isFetchig
     }
 };
 
@@ -95,11 +99,13 @@ let mapDispatchToProps = (dispatch: any) => {
             dispatch(setCurrentPageAC(pageNumber))
         },
         setUsersTotalCount: (totalCount: number) => {
-              dispatch(setUsersTotalCountAC(totalCount))
-            }
-
+            dispatch(setUsersTotalCountAC(totalCount))
+        },
+        toggleIsFetching: (isFetching: boolean) => {
+            dispatch(toggleIsFetchingAC(isFetching))
         }
     }
+}
 
 
-    export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
