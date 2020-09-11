@@ -73,15 +73,14 @@ class UsersContainer extends React.Component <PropsType> {
 
 // mapStateToProps принимает весь state целиком и возвращает
 // объект только с теми данными, которые нам нужны
-let mapStateToProps = (state: AppStateType) => {
-    return {
+let mapStateToProps = (state: AppStateType) => ({
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetchig: state.usersPage.isFetchig
-    }
-};
+
+});
 
 // mapDispatchToProps нужна для того, чтобы передавать
 // презентационной компоненте callbacks

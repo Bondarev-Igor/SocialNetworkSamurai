@@ -1,12 +1,16 @@
+import {UserType} from "./users-reducer";
+
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const ADD_POST = "ADD-POST";
+const SET_USER_PROFILE = "SET_USER_PROFILE"
 
 let initialState = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 4},
         {id: 2, message: "It's my first post", likesCount: 9}
     ],
-    newPostText: "it-kamasutra.com"
+    newPostText: "it-kamasutra.com",
+    profile: null
 };
 
 const profileReducer = (state = initialState, action: any) => {
@@ -29,6 +33,11 @@ const profileReducer = (state = initialState, action: any) => {
             newPostText: action.newText
             };
         }
+        case SET_USER_PROFILE: {
+            // мы вернём копию state, в котором мы поменяем
+            // profile на тотБ который пришёл в action
+             return {...state, profile: action.profile}
+        }
         default :
             return state
 
@@ -38,5 +47,6 @@ const profileReducer = (state = initialState, action: any) => {
 export const addPostActionCreator =() => ({type: ADD_POST});
 export const updateNewPostTextActionCreator =(text: string) =>
     ({type: UPDATE_NEW_POST_TEXT, newText: text});
+export const setUserProfile=(profile: any)=>({type: SET_USER_PROFILE, profile});
 
 export default profileReducer;
