@@ -99,15 +99,15 @@ const usersReducer = (state = initialState, action: any) => {
 // В АС нужен userId, чтобы понимать за каким юзером нам следить.
 // В АС он попадет как параметр.
 
-export const followAC = (userId: number) => ({type: FOLLOW, userId});
-export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId});
+export const follow = (userId: number) => ({type: FOLLOW, userId});
+export const unfollow = (userId: number) => ({type: UNFOLLOW, userId});
 // массив пользователей изначально бдует пустой, т.е. нам нужен АС, кот.
 // будет сетать user. users придут к нам с сервера, мы возьмем их
 // и засетаем в стейт
-export const setUsersAC = (users: Array<UserType>) => ({type: SET_USERS, users});
+export const setUsers = (users: Array<UserType>) => ({type: SET_USERS, users});
 
-export const setCurrentPageAC = (currentPage: number) => ({type:SET_CURRENT_PAGE, currentPage});
-export const setUsersTotalCountAC = (totalCount: number) => ({type:SET_USERS_TOTAL_COUNT, totalCount});
-export const toggleIsFetchingAC = (isFetching: boolean) => ({type:TOGGLE_IS_FETCHING, isFetching});
+export const setCurrentPage = (currentPage: number) => ({type:SET_CURRENT_PAGE, currentPage});
+export const setUsersTotalCount = (totalCount: number) => ({type:SET_USERS_TOTAL_COUNT, totalCount});
+export const toggleIsFetching = (isFetching: boolean) => ({type:TOGGLE_IS_FETCHING, isFetching});
 
 export default usersReducer;
