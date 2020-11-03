@@ -3,6 +3,7 @@ import styles from "./users.module.css";
 import userPhoto from "../../assets/images/ava.jpg";
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 type PropsType = {
     users: Array<UserType>
@@ -42,36 +43,61 @@ const Users = (props: PropsType) => {
             props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <NavLink to={'/profile/'+u.id}>
-                            <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto}/>
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small != null ? u.photos.small : userPhoto}
+                                 className={styles.userPhoto}/>
                         </NavLink>
                     </div>
                     <div>
                         {
                             u.followed ?
                                 <button onClick={() => {
-                                    props.unfollow(u.id)
+                                    axios.delete<any>(
+                                        `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                                        {withCredentials: true,
+                                            headers: {
+                                            "API-KEY": "7add98d9-734d-4189-972a-5d1bc689d34f"
+                                            }
+                                        }
+                                    )
+                                        .then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.unfollow(u.id)
+                                            }
+                                        });
                                 }}>Unfollow</button>
-                                : <button onClick={() => {
-                                    props.follow(u.id)
-                                }}>Follow</button>
-                        }
-                    </div>
-                </span>
-                <span>
-                    <span>
-                       <div>{u.name}</div>
-                       <div>{u.status}</div>
-                    </span>
-                    <span>
-                       <div>{"u.location.country"}</div>
-                       <div>{"u.location.city"}</div>
-                    </span>
+                                    : <button onClick={() => {
+                                        axios.post<any>(
+                                            `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                                            {}, {withCredentials: true,
+                                                headers: {
+                                                    "API-KEY": "7add98d9-734d-4189-972a-5d1bc689d34f"
+                                                }
+                                            }
+                                        )
+                                            .then(response => {
+                                                if (response.data.resultCode === 0) {
+                                                    props.follow(u.id)
+                                                }
+                                            });
+                                    }}>Follow</button>
+                                }
+                            </div>
+                            </span>
+                            <span>
+                            <span>
+                            <div>{u.name}</div>
+                            <div>{u.status}</div>
+                            </span>
+                            <span>
+                            <div>{"u.location.country"}</div>
+                            <div>{"u.location.city"}</div>
+                            </span>
 
-                </span>
-            </div>)
-        }
-    </div>
-}
+                            </span>
+                            </div>)
+                            }
+                            </div>
+                            }
 
-export default Users;
+                            export default Users;

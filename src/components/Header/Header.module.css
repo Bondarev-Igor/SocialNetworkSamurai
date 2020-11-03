@@ -6,3 +6,12 @@ header img {
     grid-area: h;
     background-color: darkgray;
 }
+
+.loginBlock {
+    float: right;
+    color: white;
+}
+.loginBlock a {
+    text-decoration: none;
+    color: white;
+}
