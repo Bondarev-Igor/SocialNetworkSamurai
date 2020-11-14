@@ -16,14 +16,14 @@ export const usersAPI = {
             .then(response => {
                 return response.data
             });
+    },
+    follow(userId: number) {
+        return instance.post<any>(
+            `follow/${userId}`,{})
+    },
+    unfollow(userId: number) {
+        return instance.delete<any>(`follow/${userId}`)
     }
 }
 
-// export const getUsers = (currentPage: number = 1, pageSize: number = 10) => {
-//     return instance.get<any>(
-//         `users?page=${currentPage}&count=${pageSize}`,
-//     )
-//         .then(response => {
-//             return response.data
-//         });
-// }
+
