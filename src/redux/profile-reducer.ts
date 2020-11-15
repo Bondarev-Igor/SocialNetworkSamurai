@@ -1,4 +1,6 @@
 import {UserType} from "./users-reducer";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const ADD_POST = "ADD-POST";
@@ -35,7 +37,7 @@ const profileReducer = (state = initialState, action: any) => {
         }
         case SET_USER_PROFILE: {
             // мы вернём копию state, в котором мы поменяем
-            // profile на тотБ который пришёл в action
+            // profile на тот который пришёл в action
              return {...state, profile: action.profile}
         }
         default :
@@ -48,5 +50,12 @@ export const addPostActionCreator =() => ({type: ADD_POST});
 export const updateNewPostTextActionCreator =(text: string) =>
     ({type: UPDATE_NEW_POST_TEXT, newText: text});
 export const setUserProfile=(profile: any)=>({type: SET_USER_PROFILE, profile});
+
+export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
+    usersAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        });
+}
 
 export default profileReducer;

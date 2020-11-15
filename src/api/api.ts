@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ProfileType} from "../components/Profile/ProfileContainer";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -23,6 +24,15 @@ export const usersAPI = {
     },
     unfollow(userId: number) {
         return instance.delete<any>(`follow/${userId}`)
+    },
+    getProfile(userId: number) {
+        return instance.get<ProfileType>(`profile/`+userId)
+    },
+}
+
+export const authAPI = {
+    me () {
+        return instance.get<any>(`auth/me`)
     }
 }
 
