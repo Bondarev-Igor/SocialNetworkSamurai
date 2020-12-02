@@ -43,7 +43,7 @@ class ProfileContainer extends React.Component<any> {
     componentDidMount(): void {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 11404
+            userId = 11697
         }
         this.props.getUserProfile(userId)
     }
@@ -57,10 +57,11 @@ let mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
 });
 
-export default compose <any>(
+export default compose<any>(
     connect(mapStateToProps, {getUserProfile}),
     withRouter,
-    withAuthRedirect)(ProfileContainer) as React.ComponentType
+    // withAuthRedirect
+)(ProfileContainer) as React.ComponentType
 
 
 // let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
