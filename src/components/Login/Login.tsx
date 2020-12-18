@@ -2,12 +2,7 @@ import React from "react";
 import reduxForm from "redux-form/lib/reduxForm";
 import Field from "redux-form/lib/Field";
 
-type PropsType = {
-
-}
-
 const LoginForm = (props: any) => {
-
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
