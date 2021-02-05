@@ -20,32 +20,38 @@ export const usersAPI = {
     },
     follow(userId: number) {
         return instance.post<any>(
-            `follow/${userId}`,{})
+            `follow/${userId}`,{});
     },
     unfollow(userId: number) {
-        return instance.delete<any>(`follow/${userId}`)
+        return instance.delete<any>(`follow/${userId}`);
     },
     getProfile(userId: number) {
-        console.warn('Please use profileAPI')
-        return profileAPI.getProfile(userId)
+        console.warn('Please use profileAPI');
+        return profileAPI.getProfile(userId);
     },
 }
 
 export const profileAPI = {
     getProfile(userId: number) {
-        return instance.get<ProfileType>(`profile/`+userId)
+        return instance.get<ProfileType>(`profile/`+userId);
     },
     getStatus(userId: number) {
-        return instance.get(`profile/status/`+userId)
+        return instance.get(`profile/status/`+userId);
     },
     updateStatus(status: string) {
-        return instance.put (`profile/status/`, { status: status })
+        return instance.put (`profile/status/`, { status: status });
     },
 }
 
 export const authAPI = {
     me () {
-        return instance.get<any>(`auth/me`)
+        return instance.get<any>(`auth/me`);
+    },
+    login (email: string, password: string, rememberMe = false) {
+        return instance.post(`/auth/login`, { email, password, rememberMe });
+    },
+    logout () {
+        return instance.delete(`auth/login`);
     },
 }
 

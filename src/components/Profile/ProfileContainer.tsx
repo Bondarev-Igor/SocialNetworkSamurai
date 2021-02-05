@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {getStatus, getUserProfile, updateStatus} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 type ContactsType = {
@@ -45,7 +44,10 @@ class ProfileContainer extends React.Component<any> {
     componentDidMount(): void {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 8951
+            userId = this.props.authUserId
+            if (!userId) {
+                this.props.history.push('/login');
+            }
         }
         this.props.getUserProfile(userId);
         this.props.getStatus(userId);
@@ -62,6 +64,8 @@ class ProfileContainer extends React.Component<any> {
 let mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
+    authUserId: state.auth.id,
+    isAuth: state.auth.isAuth,
 });
 
 export default compose<any>(

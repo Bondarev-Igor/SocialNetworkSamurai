@@ -1,9 +1,11 @@
-export const required = (value: any|undefined) => {
+export type FieldValidatorType = (value: string) => string|undefined
+
+export const required:FieldValidatorType = (value) => {
     if (value) return undefined;
     return "Field is required";
 }
 
-export const maxLengthCreator = (maxLength: number) => (value: any|undefined) => {
-    if (value.length > maxLength) return `Max lenght is ${maxLength} symbols`;
+export const maxLengthCreator = (maxLength: number) => (value: FieldValidatorType) => {
+    if (value.length > maxLength) return `Max length is ${maxLength} symbols`;
     return undefined;
 }

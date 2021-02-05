@@ -10,11 +10,13 @@ type PropsType = {
 const Header = (props:any) => {
     return (
         <header className={style.header}>
+
             <img
                 src="https://png.pngtree.com/template/20190313/ourlarge/pngtree-minimalist-bird-logo-image_66208.jpg "
                 alt="Logo"/>
+            
                 <div className={style.loginBlock}>
-                    {props.isAuth ? props.login : <NavLink to='/login'>Login</NavLink>}
+                    {props.isAuth ? <div>{props.login}   <button onClick={props.logout}>Log out</button> </div>: <NavLink to='/login'>Login</NavLink>}
                 </div>
         </header>
     )
