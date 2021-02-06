@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import {Route, withRouter} from "react-router-dom";
-import New from "./components/News/New";
+import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -39,7 +39,7 @@ class App extends React.Component <any> {
                            render={() => <DialogsContainer/>}/>
                     <Route path='/users'
                            render={() => <UsersContainer/>}/>
-                    <Route path='/news' component={New}/>
+                    <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
                     <Route path='/login' component={Login}/>
