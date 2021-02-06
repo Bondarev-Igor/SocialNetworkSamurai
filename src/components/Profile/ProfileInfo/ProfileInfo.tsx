@@ -3,8 +3,9 @@ import style from './ProfileInfo.module.css';
 import {ProfileType} from "../ProfileContainer";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from './ProfileStatus'
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-type PropsType={
+type PropsType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
@@ -12,7 +13,7 @@ type PropsType={
 
 const ProfileInfo = (props: PropsType) => {
     // пока профиля нет - верни Preloader
-    if(!props.profile){
+    if (!props.profile) {
         return <Preloader/>
     }
     return (
@@ -22,8 +23,8 @@ const ProfileInfo = (props: PropsType) => {
             {/*    alt="avatar"/>*/}
             <div className={style.descriptionBlock}>
                 <img src={props.profile.photos.large}/>
-                <ProfileStatus status={props.status}
-                               updateStatus = {props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status}
+                                        updateStatus={props.updateStatus}/>
             </div>
         </div>
     )
