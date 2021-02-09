@@ -11,26 +11,27 @@ export type PostsType = {
      addPost: (newPostText: string) => void
 }
 
-const MyPosts = (props: PostsType) => {
+const MyPosts = React.memo((props: PostsType) => {
+    console.log('render')
+    let postsElements = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount}
+                                                      key={post.id}/>);
 
-     let postsElements = props.posts.map(post=> <Post message={post.message} likesCount={post.likesCount} key={post.id}/>);
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-     let newPostElement = React.createRef<HTMLTextAreaElement>();
-
-     let addPost = (values: any|undefined) => {
-         props.addPost(values.newPostText);
-     }
+    let addPost = (values: any | undefined) => {
+        props.addPost(values.newPostText);
+    }
 
     return (
         <div className={style.postsBlock}>
             <h3>My Posts</h3>
-            <PostFormRedux onSubmit = {addPost}/>
+            <PostFormRedux onSubmit={addPost}/>
             <div className={style.posts}>
-                { postsElements }
+                {postsElements}
             </div>
         </div>
     )
-};
+});
 
 const maxLength10 = maxLengthCreator(10)
 
