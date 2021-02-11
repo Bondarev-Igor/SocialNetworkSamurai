@@ -1,6 +1,6 @@
 import {DialogType, MessageType} from "./store";
 
-const SEND_MESSAGE = "SEND_MESSAGE";
+const SEND_MESSAGE = "network/dialogs-reducer/SEND_MESSAGE";
 
 let initialState = {
     dialogs: [

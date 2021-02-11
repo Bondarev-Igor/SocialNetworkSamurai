@@ -1,51 +1,37 @@
-
 export type MessageType = {
     id: number
     message: string
 }
-
 export type DialogType = {
     id: number
     name: string
 }
-
 export type PostType = {
     id: number
     message: string
     likesCount: number
 }
-
 export type ProfilePageType ={
     posts: Array<PostType>
     newPostText: string
 }
-
-
-
 /*export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     usersPage: Array<UserType>
 }*/
-
-
-
 export type AddPostType ={
     addPost: () => void
 }
-
 export type UpdateNewPostTextType = {
     updateNewPostText: (newText: string) => void
 }
-
 /*export type CallSubscribeType = {
     _callSubscriber: (state: RootStateType)=> void
 }*/
-
 export type DispatchType = {
     dispatch :(action: any) => void
 }
-
 /*export type StoreType = {
     _state: RootStateType,
     getState: () => RootStateType,
@@ -55,7 +41,6 @@ export type DispatchType = {
     subscribe:(observer: any) => void
     dispatch: (action: any) => void
 }*/
-
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
