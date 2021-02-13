@@ -9,11 +9,6 @@ type PropsType = {
     user: UserType
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    totalUsersCount: number
-    pageSize: number
-    currentPage: number
-    onPageChanged: (pageNumber: number) => void
-    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<number>
 }
 
@@ -22,29 +17,29 @@ const User = (props: PropsType) => {
         <div>
         <span>
                     <div>
-                        <NavLink to={'/profile/' + user.id}>
-                            <img src={user.photos.small != null ? user.photos.small : userPhoto}
+                        <NavLink to={'/profile/' + props.user.id}>
+                            <img src={props.user.photos.small != null ? props.user.photos.small : userPhoto}
                                  className={styles.userPhoto}/>
                         </NavLink>
                     </div>
                     <div>
                         {
-                            user.followed ?
-                                <button disabled={props.followingInProgress.some(id => id === user.id)}
+                            props.user.followed ?
+                                <button disabled={props.followingInProgress.some(id => id === props.user.id)}
                                         onClick={() => {
-                                            props.unfollow(user.id)
+                                            props.unfollow(props.user.id)
                                         }}>Unfollow</button>
-                                : <button disabled={props.followingInProgress.some(id => id === user.id)}
+                                : <button disabled={props.followingInProgress.some(id => id === props.user.id)}
                                           onClick={() => {
-                                              props.follow(user.id)
+                                              props.follow(props.user.id)
                                           }}>Follow</button>
                         }
                </div>
         </span>
             <span>
                              <span>
-                            <div>{user.name}</div>
-                            <div>{user.status}</div>
+                            <div>{props.user.name}</div>
+                            <div>{props.user.status}</div>
                             </span>
                             <span>
                             <div>{"user.location.country"}</div>
