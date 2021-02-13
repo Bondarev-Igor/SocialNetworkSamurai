@@ -18,6 +18,7 @@ import {
 
 
 type PropsType = {
+    user: UserType
     users: Array<UserType>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
@@ -83,6 +84,7 @@ class UsersContainer extends React.Component <PropsType> {
 // });
 
 let mapStateToProps = (state: any) => ({
+    user: state.usersPage.user,
     users: getUser(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
