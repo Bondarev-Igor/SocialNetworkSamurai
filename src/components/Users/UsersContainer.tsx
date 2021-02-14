@@ -36,7 +36,8 @@ type PropsType = {
 class UsersContainer extends React.Component <PropsType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        let {currentPage, pageSize} = this.props
+        this.props.getUsers(currentPage, pageSize);
         // this.props.toggleIsFetching(true)
         //
         // usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
@@ -48,7 +49,8 @@ class UsersContainer extends React.Component <PropsType> {
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props;
+        this.props.getUsers(pageNumber, pageSize)
     }
 
 
