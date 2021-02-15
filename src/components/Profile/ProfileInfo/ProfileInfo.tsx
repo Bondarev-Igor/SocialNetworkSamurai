@@ -2,7 +2,6 @@ import React from 'react';
 import style from './ProfileInfo.module.css';
 import {ProfileType} from "../ProfileContainer";
 import Preloader from "../../common/Preloader/Preloader";
-import ProfileStatus from './ProfileStatus'
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 type PropsType = {
