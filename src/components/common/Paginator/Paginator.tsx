@@ -16,22 +16,25 @@ const Paginator = (props: PropsType) => {
     // разделив количество всех пользователей на
     // размер страницы для отрисовки
     // затем полученный результат от деления округляем в большую сторону
-    let pagesCount: number = Math.ceil(props.totalItemsCount / props.pageSize);
+    let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize);
     // создаём массив страниц, котороый потом отрисуем
     let pages = [];
     // заполним массив pages
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-
+    //Определяем общее количество порций страниц.
+    //Делим, ранее определённое, общее количество страниц на нужный нам
+    //размер порции из props
     let portionCount = Math.ceil(pagesCount/props.portionSize);
     let [portionNumber, setPortionNumber] = useState(1);
+    //Ниже определяем левую и правую границы порции страниц по формулам.
     let leftPortionPageNumber = (portionNumber - 1) * props.portionSize + 1;
     let rightPortionPageNumber = portionNumber * props.portionSize;
 
     return <div className={styles.paginator}>
         { portionNumber > 1 &&
-        <button onClick={ () => { setPortionNumber (portionNumber - 1)} }>PREV</button>}
+        <button onClick={() => { setPortionNumber (portionNumber - 1)}}>PREV</button>}
         {pages
             .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
             .map(p => {
@@ -43,7 +46,7 @@ const Paginator = (props: PropsType) => {
                          }}>{p}</span>
         })}
         { portionCount > portionNumber &&
-        <button onClick={ () => { setPortionNumber (portionNumber + 1)} }>NEXT</button>}
+        <button onClick={() => { setPortionNumber (portionNumber + 1)}}>NEXT</button>}
     </div>
 }
 
