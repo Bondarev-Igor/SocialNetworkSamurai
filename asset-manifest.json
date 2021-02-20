@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/socialnetworksamurai/static/css/main.3eb4a923.chunk.css",
+    "main.js": "/socialnetworksamurai/static/js/main.aea09e46.chunk.js",
+    "main.js.map": "/socialnetworksamurai/static/js/main.aea09e46.chunk.js.map",
+    "runtime-main.js": "/socialnetworksamurai/static/js/runtime-main.0e5f12c1.js",
+    "runtime-main.js.map": "/socialnetworksamurai/static/js/runtime-main.0e5f12c1.js.map",
+    "static/js/2.3102c125.chunk.js": "/socialnetworksamurai/static/js/2.3102c125.chunk.js",
+    "static/js/2.3102c125.chunk.js.map": "/socialnetworksamurai/static/js/2.3102c125.chunk.js.map",
+    "static/css/3.d2258aec.chunk.css": "/socialnetworksamurai/static/css/3.d2258aec.chunk.css",
+    "static/js/3.bed56040.chunk.js": "/socialnetworksamurai/static/js/3.bed56040.chunk.js",
+    "static/js/3.bed56040.chunk.js.map": "/socialnetworksamurai/static/js/3.bed56040.chunk.js.map",
+    "static/css/4.8d6253fe.chunk.css": "/socialnetworksamurai/static/css/4.8d6253fe.chunk.css",
+    "static/js/4.293104ee.chunk.js": "/socialnetworksamurai/static/js/4.293104ee.chunk.js",
+    "static/js/4.293104ee.chunk.js.map": "/socialnetworksamurai/static/js/4.293104ee.chunk.js.map",
+    "index.html": "/socialnetworksamurai/index.html",
+    "precache-manifest.b709bc61524f28aeecc55f6129529ac1.js": "/socialnetworksamurai/precache-manifest.b709bc61524f28aeecc55f6129529ac1.js",
+    "service-worker.js": "/socialnetworksamurai/service-worker.js",
+    "static/css/3.d2258aec.chunk.css.map": "/socialnetworksamurai/static/css/3.d2258aec.chunk.css.map",
+    "static/css/4.8d6253fe.chunk.css.map": "/socialnetworksamurai/static/css/4.8d6253fe.chunk.css.map",
+    "static/css/main.3eb4a923.chunk.css.map": "/socialnetworksamurai/static/css/main.3eb4a923.chunk.css.map",
+    "static/js/2.3102c125.chunk.js.LICENSE.txt": "/socialnetworksamurai/static/js/2.3102c125.chunk.js.LICENSE.txt",
+    "static/media/ava.jpg": "/socialnetworksamurai/static/media/ava.0163e181.jpg",
+    "static/media/preloader.gif": "/socialnetworksamurai/static/media/preloader.5ebe3408.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0e5f12c1.js",
+    "static/js/2.3102c125.chunk.js",
+    "static/css/main.3eb4a923.chunk.css",
+    "static/js/main.aea09e46.chunk.js"
+  ]
+}
