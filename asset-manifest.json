@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/socialnetworksamurai/static/css/main.3eb4a923.chunk.css",
-    "main.js": "/socialnetworksamurai/static/js/main.f0052d2f.chunk.js",
-    "main.js.map": "/socialnetworksamurai/static/js/main.f0052d2f.chunk.js.map",
+    "main.js": "/socialnetworksamurai/static/js/main.bb22a5fa.chunk.js",
+    "main.js.map": "/socialnetworksamurai/static/js/main.bb22a5fa.chunk.js.map",
     "runtime-main.js": "/socialnetworksamurai/static/js/runtime-main.ff488252.js",
     "runtime-main.js.map": "/socialnetworksamurai/static/js/runtime-main.ff488252.js.map",
     "static/js/2.85a42180.chunk.js": "/socialnetworksamurai/static/js/2.85a42180.chunk.js",
@@ -14,7 +14,7 @@
     "static/js/4.29d64081.chunk.js": "/socialnetworksamurai/static/js/4.29d64081.chunk.js",
     "static/js/4.29d64081.chunk.js.map": "/socialnetworksamurai/static/js/4.29d64081.chunk.js.map",
     "index.html": "/socialnetworksamurai/index.html",
-    "precache-manifest.f31fb8d246d734f85e0b94196ddb8aa2.js": "/socialnetworksamurai/precache-manifest.f31fb8d246d734f85e0b94196ddb8aa2.js",
+    "precache-manifest.61a630717c5b666c97dfb2711c201639.js": "/socialnetworksamurai/precache-manifest.61a630717c5b666c97dfb2711c201639.js",
     "service-worker.js": "/socialnetworksamurai/service-worker.js",
     "static/css/3.d2258aec.chunk.css.map": "/socialnetworksamurai/static/css/3.d2258aec.chunk.css.map",
     "static/css/4.8d6253fe.chunk.css.map": "/socialnetworksamurai/static/css/4.8d6253fe.chunk.css.map",
@@ -27,6 +27,6 @@
     "static/js/runtime-main.ff488252.js",
     "static/js/2.85a42180.chunk.js",
     "static/css/main.3eb4a923.chunk.css",
-    "static/js/main.f0052d2f.chunk.js"
+    "static/js/main.bb22a5fa.chunk.js"
   ]
 }
