@@ -5,9 +5,11 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfileType} from "./ProfileContainer";
 
 type PostsType = {
+    isOwner: boolean
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
+    savePhoto: (file: any) => void
 }
 
 const Profile = (props: PostsType) => {
@@ -16,7 +18,9 @@ const Profile = (props: PostsType) => {
         <div className={style.content}>
             <ProfileInfo profile={props.profile}
                          status = {props.status}
-                         updateStatus = {props.updateStatus}/>
+                         updateStatus = {props.updateStatus}
+                         isOwner = {props.isOwner}
+                         savePhoto={props.savePhoto}/>
             <MyPostsContainer />
         </div>
     )
