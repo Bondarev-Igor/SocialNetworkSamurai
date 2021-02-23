@@ -21,8 +21,8 @@ const ProfileInfo = (props: PropsType) => {
     }
 
     const onMainPhotoSelected = (e: any) => {
-        if (e.target.files.length) { // если длинна у выбранного объкта есть
-            props.savePhoto(e.target.files)
+        if (e.target.files.length) { // если длинна у выбранного объекта есть
+            props.savePhoto(e.target.files[0])
         }
     }
     return (

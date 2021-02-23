@@ -11,7 +11,7 @@ let initialState = {
         {id: 1, message: 'Hi, how are you?', likesCount: 4},
         {id: 2, message: "It's my first post", likesCount: 9}
     ],
-    profile: {},
+    profile: null,
     status: '',
 };
 
@@ -48,7 +48,7 @@ const profileReducer = (state = initialState, action: any) => {
         }
         case SAVE_PHOTO_SUCCESS: {
             return {
-                ...state, profile: {...state.profile, photos: action.photos }
+                ...state, profile: {...state.profile as unknown as Object, photos: action.photos }
             }
         }
         default :
@@ -83,7 +83,7 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
 export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
     let response = await profileAPI.savePhoto(file);
     if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccess(response.data.photos))
+        dispatch(savePhotoSuccess(response.data.data.photos))
     }
 };
 
