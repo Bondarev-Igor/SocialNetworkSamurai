@@ -6,22 +6,31 @@ import {getStatus, getUserProfile, savePhoto, updateStatus} from "../../redux/pr
 import {RouteComponentProps, withRouter} from "react-router";
 import {compose} from "redux";
 
-type ContactsType = {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
-    mainLink: string
+type ContactType = {
+    [index: string] : string
 }
+// type ContactsType = {
+//     github: any
+//     vk: any
+//     facebook: any
+//     instagram: any
+//     twitter: any
+//     website: any
+//     youtube: any
+//     mainLink: any
+// }
+type ContactsType = {
+    [index:string] : {message: string}
+}
+
+
 type PhotosType = {
     large: string
     small: string
 }
 export type ProfileType = {
     userId: number
+    aboutMe: string
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string

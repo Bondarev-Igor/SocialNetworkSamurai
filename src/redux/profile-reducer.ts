@@ -53,7 +53,6 @@ const profileReducer = (state = initialState, action: any) => {
         }
         default :
             return state
-
     }
 };
 
