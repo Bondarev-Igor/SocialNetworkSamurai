@@ -4,6 +4,8 @@ import {ProfileType} from "../ProfileContainer";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/ava.jpg"
+import ProfileDataForm, {ProfileFormDataType} from "./ProfileDataForm";
+import ProfileDataFormReduxForm from "./ProfileDataForm";
 
 
 type PropsType = {
@@ -12,6 +14,7 @@ type PropsType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
+    saveProfile:(formData: any) => void
 }
 
 type ProfileDataType = {
@@ -19,9 +22,7 @@ type ProfileDataType = {
     isOwner: boolean
     goToEditMode:() => void
 }
-type ProfileDataFormType = {
-    profile: ProfileType
-}
+
 
 const ProfileInfo = (props: PropsType) => {
 
@@ -37,13 +38,18 @@ const ProfileInfo = (props: PropsType) => {
             props.savePhoto(e.target.files[0])
         }
     }
+
+    const onSubmit = (formData: ProfileFormDataType) => {
+        props.saveProfile(formData)
+    }
+
     return (
         <div className={style.content}>
             <div className={style.descriptionBlock}>
                 <img src={props.profile.photos.large || userPhoto} className={style.mainPhoto}/><br/>
                 {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                 { editMode
-                    ? <ProfileDataForm profile={props.profile}/>
+                    ? <ProfileDataFormReduxForm onSubmit={onSubmit}/>
                     : <ProfileData goToEditMode = {() => setEditMode(true)} profile={props.profile} isOwner={props.isOwner} /> }
                 <ProfileStatusWithHooks status={props.status}
                                         updateStatus={props.updateStatus}/>
@@ -72,29 +78,6 @@ const ProfileData = (props: ProfileDataType) => {
             return <Contacts key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
         })}
         </div>
-    </div>
-}
-const ProfileDataForm = (props: ProfileDataFormType) => {
-    return <div>
-        Form
-        {/*<div>*/}
-        {/*    <b>Full name:</b> {props.profile.fullName}*/}
-        {/*</div>*/}
-        {/*<div>*/}
-        {/*    <b>Looking for a job:</b> {props.profile.lookingForAJob ? 'yes' : 'no'}*/}
-        {/*</div>*/}
-        {/*{props.profile.lookingForAJob &&*/}
-        {/*<div>*/}
-        {/*    <b>My professional skills:</b> {props.profile.lookingForAJobDescription}*/}
-        {/*</div>}*/}
-        {/*<div>*/}
-        {/*    <b>About me:</b> {props.profile.aboutMe}*/}
-        {/*</div>*/}
-        {/*<div>*/}
-        {/*    <b>Contacts:</b> {Object.keys(props.profile.contacts).map((key) => {*/}
-        {/*    return <Contacts key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>*/}
-        {/*})}*/}
-        {/*</div>*/}
     </div>
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getStatus, getUserProfile, savePhoto, updateStatus} from "../../redux/profile-reducer";
+import {getStatus, getUserProfile, savePhoto, saveProfile, updateStatus} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router";
 import {compose} from "redux";
 
@@ -19,12 +19,10 @@ type ContactType = {
 //     youtube: any
 //     mainLink: any
 // }
-type ContactsType = {
+export type ContactsType = {
     [index:string] : {message: string}
 }
-
-
-type PhotosType = {
+export type PhotosType = {
     large: string
     small: string
 }
@@ -37,7 +35,6 @@ export type ProfileType = {
     contacts: ContactsType
     photos: PhotosType
 }
-
 type PropsType = {
     profile: ProfileType,
     isAuth: boolean,
@@ -77,7 +74,8 @@ class ProfileContainer extends React.Component<any> {
                           profile = {this.props.profile}
                           status = {this.props.status}
                           updateStatus = {this.props.updateStatus}
-                          savePhoto = {this.props.savePhoto}/>
+                          savePhoto = {this.props.savePhoto}
+                          saveProfile={this.props.saveProfile}/>
     }
 }
 
@@ -89,7 +87,7 @@ let mapStateToProps = (state: AppStateType) => ({
 });
 
 export default compose<any>(
-    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto }),
+    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile }),
     withRouter,
     // withAuthRedirect
 )(ProfileContainer) as React.ComponentType
