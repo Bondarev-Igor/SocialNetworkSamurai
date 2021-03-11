@@ -5,7 +5,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/ava.jpg"
 import ProfileDataForm, {ProfileFormDataType} from "./ProfileDataForm";
-import ProfileDataFormReduxForm from "./ProfileDataForm";
+
 
 
 type PropsType = {
@@ -41,6 +41,7 @@ const ProfileInfo = (props: PropsType) => {
 
     const onSubmit = (formData: ProfileFormDataType) => {
         props.saveProfile(formData)
+        setEditMode(false)
     }
 
     return (
@@ -49,7 +50,7 @@ const ProfileInfo = (props: PropsType) => {
                 <img src={props.profile.photos.large || userPhoto} className={style.mainPhoto}/><br/>
                 {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                 { editMode
-                    ? <ProfileDataForm onSubmit={onSubmit} initialValues={props.profile} />
+                    ? <ProfileDataForm onSubmit={onSubmit} initialValues={props.profile} profile={props.profile}/>
                     : <ProfileData goToEditMode = {() => setEditMode(true)} profile={props.profile} isOwner={props.isOwner} /> }
                 <ProfileStatusWithHooks status={props.status}
                                         updateStatus={props.updateStatus}/>

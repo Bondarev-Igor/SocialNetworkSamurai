@@ -1,5 +1,6 @@
-import {Dispatch} from "redux";
+import {AnyAction, Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
+import {AppStateType} from "./redux-store";
 const ADD_POST = "network/profile-reducer/ADD-POST";
 const SET_USER_PROFILE = "network/profile-reducer/SET_USER_PROFILE";
 const SET_STATUS = "network/profile-reducer/SET_STATUS";
@@ -86,10 +87,11 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
     }
 };
 
-export const saveProfile = (profile: any) => async (dispatch: Dispatch) => {
+export const saveProfile = (profile: any) => async (dispatch: Dispatch<AnyAction>, getState:any) => {
+    const userId = getState().auth.id;
     let response = await profileAPI.saveProfile(profile);
     if (response.data.resultCode === 0) {
-        // dispatch(savePhotoSuccess(response.data.data.photos))
+        dispatch(getUserProfile(userId) as any)
     }
 };
 

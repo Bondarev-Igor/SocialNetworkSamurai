@@ -16,7 +16,7 @@ type PropsType = {
     profile: ProfileType
 }
 
-const ProfileDataForm: React.FC<InjectedFormProps<ProfileFormDataType>> = ({handleSubmit}) => {
+const ProfileDataForm: React.FC<InjectedFormProps<ProfileFormDataType>&PropsType> = ({handleSubmit }, props: PropsType) => {
     return <form onSubmit={handleSubmit}>
         <div><button>Save</button></div>
         <div>
@@ -43,6 +43,6 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileFormDataType>> = ({hand
     </form>
 }
 
-const ProfileDataFormReduxForm = reduxForm<ProfileFormDataType> ({ form: "edit-profile" })(ProfileDataForm)
+const ProfileDataFormReduxForm = reduxForm<ProfileFormDataType> ({ form: "edit-profile" })(ProfileDataForm as any)
 
 export default ProfileDataFormReduxForm;
