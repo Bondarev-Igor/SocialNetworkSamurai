@@ -18,7 +18,7 @@ type PropsType = {
 
 const ProfileDataForm: React.FC<InjectedFormProps<ProfileFormDataType>> = ({handleSubmit}) => {
     return <form onSubmit={handleSubmit}>
-        <div><button>save</button></div>
+        <div><button>Save</button></div>
         <div>
             <b>Full name:</b>
             { createField ("Full name", [], Input, "fullName", null) }
