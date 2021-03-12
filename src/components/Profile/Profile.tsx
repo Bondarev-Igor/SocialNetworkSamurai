@@ -10,7 +10,7 @@ type PostsType = {
     status: string
     updateStatus: (status: string) => void
     savePhoto: (file: any) => void
-    saveProfile:() => void
+    saveProfile:(formData: any) => Promise<any>
 }
 
 const Profile = (props: PostsType) => {

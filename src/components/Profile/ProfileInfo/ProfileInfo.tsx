@@ -8,13 +8,14 @@ import ProfileDataForm, {ProfileFormDataType} from "./ProfileDataForm";
 
 
 
+
 type PropsType = {
     savePhoto: (file: any) => void
     isOwner: boolean
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
-    saveProfile:(formData: any) => void
+    saveProfile:(formData: any) => Promise<any>
 }
 
 type ProfileDataType = {
@@ -40,8 +41,9 @@ const ProfileInfo = (props: PropsType) => {
     }
 
     const onSubmit = (formData: ProfileFormDataType) => {
-        props.saveProfile(formData)
-        setEditMode(false)
+        props.saveProfile(formData).then(() => {
+            setEditMode(false)
+        })
     }
 
     return (
@@ -82,7 +84,7 @@ const ProfileData = (props: ProfileDataType) => {
     </div>
 }
 
-const Contacts = ({contactTitle, contactValue}: any) => {
+export const Contacts = ({contactTitle, contactValue}: any) => {
     return <div className={style.contact}><b>{contactTitle}</b>: {contactValue}</div>
 }
 
