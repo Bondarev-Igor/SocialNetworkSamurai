@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import {Route, withRouter} from "react-router-dom";
+import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -27,7 +27,6 @@ class App extends React.Component <any> {
     }
 
     render() {
-
         if (!this.props.initialized) {
             return <Preloader/>
         }
@@ -37,18 +36,24 @@ class App extends React.Component <any> {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile/:userId?'
-                           render={withSuspense(ProfileContainer)}
-                    />
-                    <Route path='/dialogs'
-                           render={withSuspense(DialogsContainer)}
-                    />
-                    <Route path='/users'
-                           render={() => <UsersContainer/>}/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music}/>
-                    <Route path='/settings' component={Settings}/>
-                    <Route path='/login' component={Login}/>
+                    <Switch>
+                        <Redirect from="/" to="/profile" />
+                        <Route path='/profile/:userId?'
+                               render={withSuspense(ProfileContainer)}
+                        />
+                        <Route path='/dialogs'
+                               render={withSuspense(DialogsContainer)}
+                        />
+                        <Route path='/users'
+                               render={() => <UsersContainer/>}/>
+                        <Route path='/news' component={News}/>
+                        <Route path='/music' component={Music}/>
+                        <Route path='/settings' component={Settings}/>
+                        <Route path='/login' component={Login}/>
+                        <Route path='*'
+                               render = {()=><div>404 not found</div>}
+                        />
+                    </Switch>
                 </div>
             </div>
         );
