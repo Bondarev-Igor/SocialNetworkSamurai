@@ -37,7 +37,7 @@ class App extends React.Component <any> {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Switch>
-                        <Redirect from="/" to="/profile" />
+                        {/*<Redirect from="/" to="/profile" />*/}
                         <Route path='/profile/:userId?'
                                render={withSuspense(ProfileContainer)}
                         />
@@ -51,7 +51,7 @@ class App extends React.Component <any> {
                         <Route path='/settings' component={Settings}/>
                         <Route path='/login' component={Login}/>
                         <Route path='*'
-                               render = {()=><div>404 not found</div>}
+                               render = {()=><div>404 NOT FOUND</div>}
                         />
                     </Switch>
                 </div>
