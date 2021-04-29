@@ -5,7 +5,7 @@ import {stopSubmit} from "redux-form";
 const SET_USER_DATA = "network/auth/SET_USER_DATA";
 const GET_CAPTCHA_URL_SUCCESS = "network/auth/GET_CAPTCHA_URL_SUCCESS";
 
-let initialState = {
+let initialState: AuthStateType = {
     id: null,
     email: null,
     login: null,
@@ -14,14 +14,14 @@ let initialState = {
 };
 
 export type AuthStateType ={
-    id: null|number
-    email: null|string
-    login: null|boolean
+    id: number | null
+    email: string | null
+    login: string | null
     isAuth: boolean
-    captcha: null|string
+    captcha: string | null
 }
 
-const authReducer = (state = initialState, action: any) => {
+const authReducer = (state = initialState, action: any): AuthStateType => {
     switch (action.type) {
         case SET_USER_DATA :
         case GET_CAPTCHA_URL_SUCCESS:
@@ -39,12 +39,27 @@ const authReducer = (state = initialState, action: any) => {
             return state
     }
 };
+type SetAuthUserDataActionPayloadType = {
+    id: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+}
+type SetAuthUserDataActionType = {
+    type: typeof SET_USER_DATA
+    payload: SetAuthUserDataActionPayloadType
+}
 
-export const setAuthUserData = (id: number|null, email: null | string, login: null | boolean, isAuth: boolean) => (
-    {type: SET_USER_DATA, payload: {id, email, login, isAuth}}
-);
+export const setAuthUserData = (id: number|null, email: string|null, login: string|null, isAuth: boolean): SetAuthUserDataActionType => (
+    {type: SET_USER_DATA, payload:
+            {id, email, login, isAuth}
+});
 
-export const getCaptchaUrlSuccess = (captchaUrl: string) => (
+type GetCaptchaUrlSuccessActionType = {
+    type: typeof GET_CAPTCHA_URL_SUCCESS
+    payload: { captchaUrl: string}
+}
+export const getCaptchaUrlSuccess = (captchaUrl: string): GetCaptchaUrlSuccessActionType => (
     {type: GET_CAPTCHA_URL_SUCCESS, payload : {captchaUrl}}
 )
 
@@ -78,7 +93,7 @@ export const getCaptchaUrl = () => async  (dispatch: Dispatch) => {
 export const logout = () => async (dispatch: Dispatch) => {
     let response = await authAPI.logout();
     if (response.data.resultCode === 0) {
-        dispatch(setAuthUserData(null, null, null, false) as any)
+        dispatch(setAuthUserData(null, null, null, false))
     }
 };
 
