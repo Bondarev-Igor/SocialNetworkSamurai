@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
 import style from './ProfileInfo.module.css';
-import {ProfileType} from "../ProfileContainer";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/ava.jpg"
-import ProfileDataForm, {ProfileFormDataType} from "./ProfileDataForm";
-
-
-
+import ProfileDataForm from "./ProfileDataForm";
+import {KeyContactsType, ProfileType} from "../../../redux/profile-reducer";
 
 type PropsType = {
     savePhoto: (file: any) => void
@@ -40,7 +37,7 @@ const ProfileInfo = (props: PropsType) => {
         }
     }
 
-    const onSubmit = (formData: ProfileFormDataType) => {
+    const onSubmit = (formData: ProfileType) => {
         props.saveProfile(formData).then(() => {
             setEditMode(false)
         })
@@ -77,14 +74,14 @@ const ProfileData = (props: ProfileDataType) => {
             <b>About me:</b> {props.profile.aboutMe}
         </div>
         <div>
-            <b>Contacts:</b> {Object.keys(props.profile.contacts).map((key) => {
+            <b>Contacts:</b> {Object.keys(props.profile.contacts).map((key ) => {
             return <Contacts key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
         })}
         </div>
     </div>
 }
 
-export const Contacts = ({contactTitle, contactValue}: any) => {
+export const Contacts = ({contactTitle, contactValue}: KeyContactsType) => {
     return <div className={style.contact}><b>{contactTitle}</b>: {contactValue}</div>
 }
 

@@ -2,7 +2,14 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getStatus, getUserProfile, savePhoto, saveProfile, updateStatus} from "../../redux/profile-reducer";
+import {
+    getStatus,
+    getUserProfile,
+    ProfileType,
+    savePhoto,
+    saveProfile,
+    updateStatus
+} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router";
 import {compose} from "redux";
 
@@ -26,15 +33,15 @@ export type PhotosType = {
     large: string
     small: string
 }
-export type ProfileType = {
-    userId: number
-    aboutMe: string
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    contacts: ContactsType
-    photos: PhotosType
-}
+// export type ProfileType = {
+//     userId: number
+//     aboutMe: string
+//     lookingForAJob: boolean
+//     lookingForAJobDescription: string
+//     fullName: string
+//     contacts: ContactsType
+//     photos: PhotosType
+// }
 type PropsType = {
     profile: ProfileType,
     isAuth: boolean,
