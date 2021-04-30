@@ -50,8 +50,8 @@ class App extends React.Component <any> {
                         <Route path='/music' component={Music}/>
                         <Route path='/settings' component={Settings}/>
                         <Route path='/login' component={Login}/>
-                        <Route path='*'
-                               render = {()=><div>404 NOT FOUND</div>}
+                        {/*<Route path='*'*/}
+                        {/*       render = {()=><div>404 NOT FOUND</div>}*/}
                         />
                     </Switch>
                 </div>
