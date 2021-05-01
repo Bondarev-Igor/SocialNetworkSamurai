@@ -5,43 +5,23 @@ import {AppStateType} from "../../redux/redux-store";
 import {
     getStatus,
     getUserProfile,
-    ProfileType,
     savePhoto,
     saveProfile,
     updateStatus
 } from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router";
 import {compose} from "redux";
+import {ProfileType} from "../../types/types";
 
 type ContactType = {
     [index: string] : string
 }
-// type ContactsType = {
-//     github: any
-//     vk: any
-//     facebook: any
-//     instagram: any
-//     twitter: any
-//     website: any
-//     youtube: any
-//     mainLink: any
-// }
+
 export type ContactsType = {
     [index:string] : {message: string}
 }
-export type PhotosType = {
-    large: string
-    small: string
-}
-// export type ProfileType = {
-//     userId: number
-//     aboutMe: string
-//     lookingForAJob: boolean
-//     lookingForAJobDescription: string
-//     fullName: string
-//     contacts: ContactsType
-//     photos: PhotosType
-// }
+
+
 type PropsType = {
     profile: ProfileType,
     isAuth: boolean,

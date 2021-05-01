@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {
     follow,requestUsers,
     setCurrentPage, setUsers, setUsersTotalCount,
-    toggleFollowingProgress, unfollow, UserType
+    toggleFollowingProgress, unfollow,
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
@@ -15,6 +15,7 @@ import {
     getPageSize,
     getTotalUsersCount, getUser,
 } from "../../redux/users-selectors";
+import {UserType} from "../../types/types";
 
 
 type PropsType = {

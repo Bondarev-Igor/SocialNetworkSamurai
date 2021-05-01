@@ -4,7 +4,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/ava.jpg"
 import ProfileDataForm from "./ProfileDataForm";
-import {KeyContactsType, ProfileType} from "../../../redux/profile-reducer";
+import {KeyContactsType, ProfileType} from "../../../types/types";
 
 type PropsType = {
     savePhoto: (file: any) => void

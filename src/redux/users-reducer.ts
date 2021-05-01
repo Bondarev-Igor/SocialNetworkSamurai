@@ -1,6 +1,7 @@
 import {usersAPI} from "../api/api";
 import {Dispatch} from "redux";
 import {updateObjectInArray} from "../utils/object-helpers";
+import {UserType} from "../types/types";
 
 const FOLLOW = "network/users-reducer/FOLLOW";
 const UNFOLLOW = "network/users-reducer/UNFOLLOW";
@@ -10,22 +11,7 @@ const SET_USERS_TOTAL_COUNT = "network/users-reducer/SET_USERS_TOTAL_COUNT";
 const TOGGLE_IS_FETCHING = "network/users-reducer/TOGGLE_IS_FETCHING"
 const TOGGLE_IS_FOLLOWING_PROGRESS = "network/users-reducer/TOGGLE_IS_FOLLOWING_PROGRESS"
 
-type PhotosType = {
-    small: string
-    large: string
-}
-export type UserType = {
-    id: number,
-    photos: PhotosType,
-    name: string,
-    followed: boolean,
-    status: string,
-    location: LocationType
-}
-export type LocationType = {
-    city: string,
-    country: string
-}
+
 export type setCurrentPageActionType = {
     type: "SET_CURRENT_PAGE"
     currentPage: number
@@ -38,10 +24,12 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetchig: true,
-    followingInProgress: [] as Array<number>
+    followingInProgress: [] as Array<number> //Array of User ids
 };
 
-const usersReducer = (state = initialState, action: any) => {
+type InitialStateType = typeof initialState
+
+const usersReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case FOLLOW :
             return {
@@ -111,17 +99,46 @@ const usersReducer = (state = initialState, action: any) => {
 
 // В АС нужен userId, чтобы понимать за каким юзером нам следить.
 // В АС он попадет как параметр.
-
-export const followSuccess = (userId: number) => ({type: FOLLOW, userId});
-export const unfollowSuccess = (userId: number) => ({type: UNFOLLOW, userId});
+type FollowSuccesActionType = {
+    type: typeof FOLLOW
+    userId: number
+}
+export const followSuccess = (userId: number): FollowSuccesActionType => ({type: FOLLOW, userId});
+type UnfollowSuccessActionType = {
+    type: typeof UNFOLLOW
+    userId: number
+}
+export const unfollowSuccess = (userId: number): UnfollowSuccessActionType => ({type: UNFOLLOW, userId});
 // массив пользователей изначально бдует пустой, т.е. нам нужен АС, кот.
 // будет сетать user. users придут к нам с сервера, мы возьмем их
 // и засетаем в стейт
-export const setUsers = (users: Array<UserType>) => ({type: SET_USERS, users});
-export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage});
-export const setUsersTotalCount = (totalCount: number) => ({type: SET_USERS_TOTAL_COUNT, totalCount});
-export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({
+type SetUsersActionType = {
+    type: typeof SET_USERS
+    users: Array<UserType>
+}
+export const setUsers = (users: Array<UserType>): SetUsersActionType => ({type: SET_USERS, users});
+type SetCurrentPageActionType = {
+    type: typeof SET_CURRENT_PAGE
+    currentPage: number
+}
+export const setCurrentPage = (currentPage: number): SetCurrentPageActionType => ({type: SET_CURRENT_PAGE, currentPage});
+type SetUsersTotalCountActionType = {
+    type: typeof SET_USERS_TOTAL_COUNT
+    totalCount: number
+}
+export const setUsersTotalCount = (totalCount: number): SetUsersTotalCountActionType => ({type: SET_USERS_TOTAL_COUNT, totalCount});
+type ToggleIsFetchingActionType = {
+    type: typeof TOGGLE_IS_FETCHING
+    isFetching: boolean
+}
+export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingActionType => ({type: TOGGLE_IS_FETCHING, isFetching});
+type ToggleFollowingProgressActionType = {
+    type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
+    isFetching: boolean
+    userId: number
+}
+
+export const toggleFollowingProgress = (isFetching: boolean, userId: number): ToggleFollowingProgressActionType => ({
     type: TOGGLE_IS_FOLLOWING_PROGRESS,
     isFetching,
     userId

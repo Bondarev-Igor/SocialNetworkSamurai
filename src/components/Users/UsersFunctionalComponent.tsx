@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./users.module.css"
-import {UserType} from "../../redux/users-reducer";
 import axios from 'axios';
 import userPhoto from '../../assets/images/ava.jpg'
+import {UserType} from "../../types/types";
 
 export type PropsType ={
     users: Array<UserType>

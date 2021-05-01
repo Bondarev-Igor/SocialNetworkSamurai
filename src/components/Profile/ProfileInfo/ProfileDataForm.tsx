@@ -1,9 +1,8 @@
 import React from "react";
 import {createField, Input, Textarea} from "../../common/FormControls/FormControls";
 import reduxForm, {InjectedFormProps} from "redux-form/lib/reduxForm";
-import {ContactsType, PhotosType} from "../ProfileContainer";
 import style from './ProfileInfo.module.css';
-import {ProfileType} from "../../../redux/profile-reducer";
+import {ProfileType} from "../../../types/types";
 
 // export type ProfileFormDataType = {
 //     userId: number

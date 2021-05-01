@@ -2,43 +2,14 @@ import {AnyAction, Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 import {AppStateType} from "./redux-store";
 import {stopSubmit} from "redux-form";
+import {PhotosType, PostType, ProfileType} from "../types/types";
 const ADD_POST = "network/profile-reducer/ADD-POST";
 const SET_USER_PROFILE = "network/profile-reducer/SET_USER_PROFILE";
 const SET_STATUS = "network/profile-reducer/SET_STATUS";
 const DELETE_POST = "network/profile-reducer/DELETE_POST";
 const SAVE_PHOTO_SUCCESS = "network/profile-reducer/SAVE_PHOTO_SUCCESS";
 
-type PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
-export interface KeyContactsType  {
-    [key: string]: string
-}
-interface ContactsType extends KeyContactsType{
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
-    mainLink: string
-}
-type ProfilePhotosType = {
-    small: string|null
-    large: string|null
-}
-export type ProfileType ={
-    userId: number
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    contacts: ContactsType
-    photos: ProfilePhotosType
-    aboutMe: string
-}
+
 
 let initialState = {
     posts: [
@@ -115,9 +86,9 @@ type DeletePostActionType = {
 export const deletePost = (postId: number): DeletePostActionType => ( {type: DELETE_POST, postId} );
 type SavePhotoSuccessActionType = {
     type: typeof SAVE_PHOTO_SUCCESS
-    photos: ProfilePhotosType
+    photos: PhotosType
 }
-export const savePhotoSuccess = (photos: ProfilePhotosType): SavePhotoSuccessActionType => ( {type: SAVE_PHOTO_SUCCESS, photos} );
+export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessActionType => ( {type: SAVE_PHOTO_SUCCESS, photos} );
 
 export const getUserProfile = (userId: number) => async (dispatch: Dispatch) => {
     let response = await usersAPI.getProfile(userId);
