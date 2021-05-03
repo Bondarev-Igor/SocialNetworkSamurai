@@ -1,22 +1,25 @@
 import React, {useState} from "react";
 import styles from "./Paginator.module.css";
-import {Dispatch} from "redux";
 
 type PropsType = {
     totalItemsCount: number
     pageSize: number
     currentPage: number
     onPageChanged: (pageNumber: number) => void
-    portionSize: number
+    portionSize?: number
 }
 
-const Paginator = (props: PropsType) => {
+const Paginator: React.FC<PropsType> = ({totalItemsCount,
+                                            pageSize,
+                                            currentPage,
+                                            onPageChanged,
+                                            portionSize= 10 }) => {
 
     // определяем количество страниц для отрисовки
     // разделив количество всех пользователей на
     // размер страницы для отрисовки
     // затем полученный результат от деления округляем в большую сторону
-    let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize);
+    let pagesCount = Math.ceil(totalItemsCount / pageSize);
     // создаём массив страниц, котороый потом отрисуем
     let pages = [];
     // заполним массив pages
@@ -26,11 +29,11 @@ const Paginator = (props: PropsType) => {
     //Определяем общее количество порций страниц.
     //Делим, ранее определённое, общее количество страниц на нужный нам
     //размер порции из props
-    let portionCount = Math.ceil(pagesCount/props.portionSize);
+    let portionCount = Math.ceil(pagesCount/portionSize);
     let [portionNumber, setPortionNumber] = useState(1);
     //Ниже определяем левую и правую границы порции страниц по формулам.
-    let leftPortionPageNumber = (portionNumber - 1) * props.portionSize + 1;
-    let rightPortionPageNumber = portionNumber * props.portionSize;
+    let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
+    let rightPortionPageNumber = portionNumber * portionSize;
 
     return <div className={styles.paginator}>
         { portionNumber > 1 &&
@@ -40,9 +43,9 @@ const Paginator = (props: PropsType) => {
             .map(p => {
             return <span
                 style ={{padding: "0px 3px 0px 3px "}}
-                className={props.currentPage === p ? styles.selectedPage : " "}
+                className={currentPage === p ? styles.selectedPage : " "}
                          onClick={(e) => {
-                             props.onPageChanged(p)
+                             onPageChanged(p)
                          }}>{p}</span>
         })}
         { portionCount > portionNumber &&

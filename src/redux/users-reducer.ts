@@ -20,7 +20,7 @@ type ActionType = setCurrentPageActionType
 
 let initialState = {
     users: [] as Array<UserType>,
-    pageSize: 20,
+    pageSize: 11,
     totalUsersCount: 0,
     currentPage: 1,
     isFetchig: true,
