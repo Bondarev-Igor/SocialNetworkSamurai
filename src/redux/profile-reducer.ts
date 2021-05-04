@@ -1,6 +1,6 @@
 import {AnyAction, Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
-import {AppStateType} from "./redux-store";
+import {RootReducerType} from "./redux-store";
 import {stopSubmit} from "redux-form";
 import {PhotosType, PostType, ProfileType} from "../types/types";
 const ADD_POST = "network/profile-reducer/ADD-POST";

@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
+import {AppStateType, RootReducerType} from "../../redux/redux-store";
 import {
     getStatus,
     getUserProfile,

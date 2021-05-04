@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Redirect} from "react-router";
-import {AppStateType} from "../redux/redux-store";
+import {AppStateType, RootReducerType} from "../redux/redux-store";
 import {connect} from "react-redux";
 
 let mapStateToPropsFromRedirect = (state: AppStateType ) => ({

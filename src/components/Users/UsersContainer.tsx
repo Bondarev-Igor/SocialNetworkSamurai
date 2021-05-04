@@ -16,6 +16,7 @@ import {
     getTotalUsersCount, getUser,
 } from "../../redux/users-selectors";
 import {UserType} from "../../types/types";
+import {AppStateType} from "../../redux/redux-store";
 
 
 type PropsType = {
@@ -76,16 +77,7 @@ class UsersContainer extends React.Component <PropsType> {
 
 // mapStateToProps принимает весь state целиком и возвращает
 // объект только с теми данными, которые нам нужны
-// let mapStateToProps = (state: AppStateType) => ({
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetchig: state.usersPage.isFetchig,
-//         followingInProgress: state.usersPage.followingInProgress
-// });
-
-let mapStateToProps = (state: any) => ({
+let mapStateToProps = (state: AppStateType) => ({
     users: getUser(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
@@ -96,36 +88,6 @@ let mapStateToProps = (state: any) => ({
 
 // mapDispatchToProps нужна для того, чтобы передавать
 // презентационной компоненте callbacks
-
-// let mapDispatchToProps = (dispatch: any) => {
-//     return {
-//         // это функция, которая будет диспатчить вызываемые ActionCreater
-//         // followAC.
-//         // Мы диспатчим не АС,а результат работы АС!!!
-//         follow: (userId: number) => {
-//             dispatch(followAC(userId))
-//         },
-//         unfollow: (userId: number) => {
-//             dispatch(unfollowAC(userId))
-//         },
-//         setUsers: (users: Array<UserType>) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (pageNumber: number) => {
-//             dispatch(setCurrentPageAC(pageNumber))
-//         },
-//         setUsersTotalCount: (totalCount: number) => {
-//             dispatch(setUsersTotalCountAC(totalCount))
-//         },
-//         toggleIsFetching: (isFetching: boolean) => {
-//             dispatch(toggleIsFetchingAC(isFetching))
-//         }
-//     }
-// }
-
-
-// export default connect(mapStateToProps, {follow, unfollow, setUsers,
-//     setCurrentPage, setUsersTotalCount, toggleFollowingProgress, getUsers})(UsersContainer);
 
 export default compose <any>(connect(mapStateToProps, {follow, unfollow, setUsers,
      setCurrentPage, setUsersTotalCount, toggleFollowingProgress, getUsers: requestUsers})) (UsersContainer) as React.ComponentType
