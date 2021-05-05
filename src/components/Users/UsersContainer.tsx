@@ -18,22 +18,26 @@ import {
 import {UserType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
 
-
-type PropsType = {
+type MapStateToPropsType = {
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetchig: boolean
+    followingInProgress: Array<number>
+}
+
+type MapDispatchToPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
-    setUsersTotalCount: (totalCount: number) => void
-    totalUsersCount: number
-    pageSize: number
-    currentPage: number
     setCurrentPage: (pageNumber: number) => void
-    isFetchig: boolean
+    setUsersTotalCount: (totalCount: number) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
-    followingInProgress: Array<number>
     getUsers: (currentPage: number, pageSize: number) => void
 }
+
+type PropsType = MapStateToPropsType & MapDispatchToPropsType
 
 class UsersContainer extends React.Component <PropsType> {
 
@@ -89,5 +93,6 @@ let mapStateToProps = (state: AppStateType) => ({
 // mapDispatchToProps нужна для того, чтобы передавать
 // презентационной компоненте callbacks
 
-export default compose <any>(connect(mapStateToProps, {follow, unfollow, setUsers,
-     setCurrentPage, setUsersTotalCount, toggleFollowingProgress, getUsers: requestUsers})) (UsersContainer) as React.ComponentType
+export default compose <any>(connect<MapStateToPropsType, MapDispatchToPropsType, null, AppStateType>
+(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage,
+    setUsersTotalCount, toggleFollowingProgress, getUsers: requestUsers})) (UsersContainer) as React.ComponentType
