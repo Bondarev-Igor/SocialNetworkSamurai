@@ -29,7 +29,7 @@ let initialState = {
 
 type InitialStateType = typeof initialState
 
-const usersReducer = (state = initialState, action: any): InitialStateType => {
+const usersReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case FOLLOW :
             return {
@@ -97,6 +97,9 @@ const usersReducer = (state = initialState, action: any): InitialStateType => {
     }
 };
 
+type ActionsType = FollowSuccesActionType|UnfollowSuccessActionType|SetUsersActionType|SetCurrentPageActionType|
+    SetUsersTotalCountActionType|ToggleIsFetchingActionType|ToggleFollowingProgressActionType
+
 // В АС нужен userId, чтобы понимать за каким юзером нам следить.
 // В АС он попадет как параметр.
 type FollowSuccesActionType = {
@@ -137,7 +140,6 @@ type ToggleFollowingProgressActionType = {
     isFetching: boolean
     userId: number
 }
-
 export const toggleFollowingProgress = (isFetching: boolean, userId: number): ToggleFollowingProgressActionType => ({
     type: TOGGLE_IS_FOLLOWING_PROGRESS,
     isFetching,
