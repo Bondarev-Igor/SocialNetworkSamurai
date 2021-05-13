@@ -50,14 +50,23 @@ export const profileAPI = {
             }
         } )
     },
-    saveProfile(profile: any) {
+    saveProfile(profile: ProfileType) {
         return instance.put (`profile/`, profile);
     },
 }
 
+type MeResponseType = {
+    data: {
+        id: number
+        email: string
+        login: string
+    }
+    resultCode: number
+    messages: Array<string>
+}
 export const authAPI = {
     me () {
-        return instance.get<any>(`auth/me`);
+        return instance.get<MeResponseType>(`auth/me`);
     },
     login (email: string, password: string, rememberMe = false, captcha: string|null = null) {
         return instance.post(`auth/login`, { email, password, rememberMe, captcha });
